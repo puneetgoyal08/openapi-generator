@@ -822,6 +822,28 @@ paths:
       responses:
         '400':
           description: Someting wrong
+  /fake/types/byte:
+    post:
+      tags:
+        - fake
+      description: Test serialization of outer string types
+      operationId: TypeByte
+      requestBody:
+        description: Input byte string as post body
+        content:
+          application/json:
+            schema:
+              type: string
+              format: byte
+        required: false
+      responses:
+        '200':
+          description: Output byte string
+          content:
+            application/json:
+              schema:
+                type: string
+                format: byte
   /fake/refs/number:
     post:
       tags:
@@ -863,6 +885,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/String'
       x-codegen-request-body-name: body
+  /fake/refs/byte:
+    post:
+      tags:
+        - fake
+      description: Test serialization of outer string types
+      operationId: Byte
+      requestBody:
+        description: Input byte string as post body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Byte'
+        required: false
+      responses:
+        '200':
+          description: Output byte string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Byte'
   /fake/refs/boolean:
     post:
       tags:
@@ -1869,6 +1911,9 @@ components:
       type: number
     String:
       type: string
+    Byte:
+      format: string
+      type: byte
     Boolean:
       type: boolean
       x-codegen-body-parameter-name: boolean_post_body
